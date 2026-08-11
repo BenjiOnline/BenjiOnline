@@ -1,0 +1,88 @@
+/* Felles stilark for tjeneste-flyerne til Våtromskonsulenten (A4) */
+@page { size: A4; margin: 0; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --navy-950: #070d18;
+  --navy-900: #0a1322;
+  --navy-800: #0e1a2e;
+  --blue: #2f7fe0;
+  --blue-bright: #4a97f2;
+  --blue-soft: #7db4f5;
+  --green: #7c9a45;
+  --green-bright: #a9bd6f;
+  --gold: #c9a24e;
+  --gold-bright: #e0be6f;
+  --text: #e9eef7;
+  --muted: #a9b8cf;
+  --line: rgba(255,255,255,0.14);
+  --card: rgba(255,255,255,0.045);
+  --accent: var(--blue-bright);
+  --accent-strong: var(--blue);
+}
+
+html, body { width: 210mm; height: 297mm; }
+
+body {
+  font-family: "Inter", sans-serif;
+  background:
+    radial-gradient(120mm 60mm at 88% 0%, var(--glow, rgba(47,127,224,0.25)), transparent 65%),
+    linear-gradient(180deg, var(--navy-800) 0%, var(--navy-900) 55%, var(--navy-950) 100%);
+  color: var(--text);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Laserlinjer */
+.laser-h, .laser-v { position: absolute; pointer-events: none; }
+.laser-h { left: 0; right: 0; top: 150mm; height: 0.35mm; background: linear-gradient(90deg, transparent, rgba(53,224,106,0.4), transparent); }
+.laser-v { top: 24mm; bottom: 40mm; left: 71%; width: 0.35mm; background: linear-gradient(180deg, transparent, rgba(53,224,106,0.3), transparent); }
+
+.page { position: relative; padding: 12mm 13mm 0; display: flex; flex-direction: column; flex: 1; }
+
+h1, h2, h3, .head { font-family: "Barlow Condensed", "Arial Narrow", sans-serif; text-transform: uppercase; }
+
+.brand { display: flex; align-items: center; gap: 4mm; }
+.brand svg { width: 15mm; height: 15mm; }
+.brand-name { font-family: "Inter", sans-serif; font-weight: 600; font-size: 7.4mm; letter-spacing: -0.01em; }
+.brand-tag { font-size: 3.4mm; color: var(--muted); margin-top: 0.5mm; }
+
+.hero-grid { display: grid; grid-template-columns: 1fr 66mm; gap: 10mm; margin-top: 10mm; flex: 1; align-items: start; }
+
+h1 { font-weight: 700; font-size: 16.5mm; line-height: 0.98; letter-spacing: 0.01em; }
+h1 .accent { color: var(--accent); }
+.underline { width: 42mm; height: 0.8mm; background: var(--accent); margin-top: 4mm; opacity: 0.85; }
+.intro { margin-top: 5mm; font-size: 4.2mm; line-height: 1.55; max-width: 105mm; }
+.intro strong { color: var(--accent); font-weight: 600; }
+
+/* Sjekkliste med ikonsirkler */
+.feature-list { list-style: none; margin-top: 7mm; }
+.feature-list li { display: flex; align-items: center; gap: 4.5mm; padding: 3.6mm 0; border-bottom: 0.3mm solid var(--line); max-width: 105mm; }
+.feature-list li:last-child { border-bottom: none; }
+.fl-icon { width: 11mm; height: 11mm; border-radius: 50%; background: var(--accent-strong); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.fl-icon svg { width: 5.8mm; height: 5.8mm; }
+.feature-list .t { font-size: 3.9mm; line-height: 1.35; }
+.feature-list .t b { font-weight: 600; }
+
+/* Prisboks */
+.price-box { border: 0.35mm solid var(--line); background: var(--card); border-radius: 4mm; padding: 5.5mm 7mm; display: inline-flex; align-items: center; gap: 5.5mm; margin-top: 7mm; align-self: flex-start; }
+.price-box svg { width: 14mm; height: 14mm; flex-shrink: 0; }
+.price-num { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 11mm; line-height: 1; color: var(--accent); }
+.price-note { font-size: 3.4mm; color: var(--muted); margin-top: 1mm; }
+
+/* Utklippstavle-kort */
+.clipboard { background: linear-gradient(180deg, #f6f7f9, #e9ecf1); color: #1c2433; border-radius: 3.5mm; padding: 7mm 6mm; box-shadow: 0 8mm 16mm rgba(0,0,0,0.45); transform: rotate(2deg); margin-top: 6mm; }
+.clipboard::before { content: ""; display: block; width: 22mm; height: 4mm; background: #c9cfd8; border-radius: 1mm; margin: -10mm auto 5mm; border: 0.4mm solid #aab1bc; }
+.clipboard h3 { font-size: 5.6mm; font-weight: 700; text-align: center; letter-spacing: 0.08em; border-bottom: 0.6mm solid #1c2433; padding-bottom: 2.5mm; margin-bottom: 2mm; }
+.clipboard ul { list-style: none; }
+.clipboard li { display: flex; align-items: center; gap: 3mm; padding: 2.6mm 0; font-size: 3.5mm; border-bottom: 0.25mm solid rgba(28,36,51,0.12); }
+.clipboard li:last-child { border-bottom: none; }
+.clipboard svg { width: 4.8mm; height: 4.8mm; flex-shrink: 0; }
+
+/* Mørk footer */
+.footer { background: var(--navy-950); padding: 5.5mm 13mm; display: flex; justify-content: space-between; align-items: center; gap: 6mm; margin-top: auto; }
+.f-item { display: flex; align-items: center; gap: 3mm; font-size: 3.9mm; white-space: nowrap; }
+.f-icon { width: 9mm; height: 9mm; border-radius: 50%; background: var(--accent-strong); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.f-icon svg { width: 4.6mm; height: 4.6mm; }
