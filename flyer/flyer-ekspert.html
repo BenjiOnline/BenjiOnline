@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<title>Flyer – Din frittstående våtromsekspert</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  @page { size: A4; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy-950: #070d18;
+    --navy-900: #0a1322;
+    --navy-800: #0e1a2e;
+    --blue: #2f7fe0;
+    --blue-bright: #4a97f2;
+    --blue-soft: #7db4f5;
+    --text: #e9eef7;
+    --muted: #a9b8cf;
+    --line: rgba(255,255,255,0.14);
+    --card: rgba(255,255,255,0.045);
+  }
+
+  html, body { width: 210mm; height: 297mm; }
+
+  body {
+    font-family: "Inter", sans-serif;
+    background:
+      radial-gradient(120mm 60mm at 85% 0%, rgba(47,127,224,0.28), transparent 65%),
+      radial-gradient(100mm 50mm at 0% 45%, rgba(47,127,224,0.12), transparent 60%),
+      linear-gradient(180deg, var(--navy-800) 0%, var(--navy-900) 55%, var(--navy-950) 100%);
+    color: var(--text);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Laserlinjer */
+  .laser-h, .laser-v { position: absolute; pointer-events: none; }
+  .laser-h { left: 0; right: 0; top: 88mm; height: 0.35mm; background: linear-gradient(90deg, transparent, rgba(53,224,106,0.45), transparent); }
+  .laser-v { top: 0; bottom: 210mm; left: 72%; width: 0.35mm; background: linear-gradient(180deg, transparent, rgba(53,224,106,0.35), transparent); }
+
+  /* Vannmerke-logo */
+  .watermark { position: absolute; top: 26mm; right: 8mm; width: 72mm; height: 72mm; opacity: 0.10; }
+
+  .page { position: relative; padding: 12mm 13mm 0; display: flex; flex-direction: column; flex: 1; }
+
+  h1, h2, h3, .head { font-family: "Barlow Condensed", "Arial Narrow", sans-serif; text-transform: uppercase; }
+
+  /* Topp: logo */
+  .brand { display: flex; align-items: center; gap: 4mm; }
+  .brand svg { width: 15mm; height: 15mm; }
+  .brand-name { font-family: "Inter", sans-serif; font-weight: 600; font-size: 7.4mm; letter-spacing: -0.01em; }
+  .brand-tag { font-size: 3.4mm; color: var(--muted); margin-top: 0.5mm; }
+
+  /* Tittel */
+  .hero { margin-top: 11mm; }
+  h1 { font-weight: 700; font-size: 17.5mm; line-height: 0.98; letter-spacing: 0.01em; }
+  h1 .blue { color: var(--blue-bright); }
+  .hero p { margin-top: 5.5mm; font-size: 4.6mm; line-height: 1.5; max-width: 118mm; color: var(--text); }
+  .hero p strong { color: var(--blue-soft); font-weight: 600; }
+
+  /* USP-rad */
+  .usps { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; margin-top: 11mm; }
+  .usp { padding: 0 3.5mm; text-align: center; border-left: 0.3mm solid var(--line); }
+  .usp:first-child { border-left: none; }
+  .usp svg { width: 11mm; height: 11mm; margin: 0 auto 2.5mm; display: block; }
+  .usp h3 { font-size: 4.6mm; font-weight: 700; letter-spacing: 0.06em; margin-bottom: 1.5mm; }
+  .usp p { font-size: 3.3mm; line-height: 1.45; color: var(--muted); }
+
+  /* Bokser */
+  .panel { border: 0.3mm solid var(--line); background: var(--card); border-radius: 4mm; padding: 7mm; margin-top: 8mm; }
+
+  .panel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; }
+  .panel h2 { font-size: 6mm; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 4.5mm; }
+  .panel h2::after { content: ""; display: block; width: 12mm; height: 0.7mm; background: var(--blue-bright); margin-top: 2mm; }
+
+  .stat { display: flex; align-items: flex-start; gap: 4mm; margin-bottom: 5mm; }
+  .stat:last-child { margin-bottom: 0; }
+  .stat-icon { width: 12mm; height: 12mm; border-radius: 3mm; background: var(--blue); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .stat-icon svg { width: 6.5mm; height: 6.5mm; }
+  .stat-num { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 7.4mm; color: var(--blue-bright); line-height: 1.05; }
+  .stat p { font-size: 3.5mm; color: var(--muted); line-height: 1.4; }
+
+  .check-list { list-style: none; }
+  .check-list li { display: flex; gap: 3mm; align-items: flex-start; margin-bottom: 3.4mm; font-size: 3.7mm; line-height: 1.4; }
+  .check-list li:last-child { margin-bottom: 0; }
+  .check-list svg { width: 5.2mm; height: 5.2mm; flex-shrink: 0; margin-top: 0.3mm; }
+
+  /* Vårt mål */
+  .goal { display: grid; grid-template-columns: 1fr 40mm; gap: 7mm; align-items: center; }
+  .goal-text p.body { font-size: 3.9mm; line-height: 1.55; color: var(--text); margin-top: 3mm; }
+  .motto { font-family: "Barlow Condensed", sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; font-size: 5.6mm; color: var(--blue-bright); margin-top: 4mm; }
+  .goal-text p.sub { font-size: 3.6mm; color: var(--muted); margin-top: 1.5mm; }
+
+  /* Rundt stempel */
+  .badge { width: 38mm; height: 38mm; position: relative; }
+  .badge svg { width: 100%; height: 100%; }
+
+  /* Lys bunnstripe */
+  .light-band { margin-top: auto; background: #eef1f6; color: #14233c; padding: 6mm 13mm; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 4mm; }
+  .lb-item { display: flex; align-items: center; gap: 3mm; border-left: 0.3mm solid rgba(20,35,60,0.18); padding-left: 4mm; }
+  .lb-item:first-child { border-left: none; padding-left: 0; }
+  .lb-item svg { width: 8mm; height: 8mm; flex-shrink: 0; }
+  .lb-item span { font-family: "Barlow Condensed", sans-serif; font-weight: 700; text-transform: uppercase; font-size: 3.9mm; line-height: 1.15; letter-spacing: 0.04em; }
+
+  /* Mørk footer */
+  .footer { background: var(--navy-950); padding: 5.5mm 13mm; display: flex; justify-content: space-between; align-items: center; gap: 6mm; }
+  .f-item { display: flex; align-items: center; gap: 3mm; font-size: 3.9mm; white-space: nowrap; }
+  .f-icon { width: 9mm; height: 9mm; border-radius: 50%; background: var(--blue); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .f-icon svg { width: 4.6mm; height: 4.6mm; }
+</style>
+</head>
+<body>
+
+<div class="laser-h"></div>
+<div class="laser-v"></div>
+
+<svg class="watermark" viewBox="0 0 48 48" fill="none">
+  <path d="M24 5 6 19.5V43h36V19.5L24 5z" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M15 25.5l7 7L34 19" stroke="#4a97f2" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+<div class="page">
+
+  <div class="brand">
+    <svg viewBox="0 0 48 48" fill="none">
+      <path d="M24 5 6 19.5V43h36V19.5L24 5z" stroke="#fff" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M15 25.5l7 7L34 19" stroke="#4a97f2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div>
+      <div class="brand-name">Våtromskonsulenten</div>
+      <div class="brand-tag">Din fagperson på våtrom</div>
+    </div>
+  </div>
+
+  <div class="hero">
+    <h1>Din frittstående<br><span class="blue">våtromsekspert</span></h1>
+    <p>Vi hjelper deg med å ta trygge valg for badet ditt – uavhengig, grundig og med <strong>spisskompetanse</strong> på våtrom.</p>
+  </div>
+
+  <div class="usps">
+    <div class="usp">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8 3v6c0 5-3.5 9.2-8 11-4.5-1.8-8-6-8-11V5l8-3z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/><path d="M8.5 12l2.5 2.5 4.5-5" stroke="#4a97f2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h3>Trygghet</h3>
+      <p>Faglig uavhengig kontroll som ivaretar dine interesser.</p>
+    </div>
+    <div class="usp">
+      <svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="6" rx="7" ry="3" stroke="#4a97f2" stroke-width="1.6"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6" stroke="#4a97f2" stroke-width="1.6"/><path d="M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6" stroke="#4a97f2" stroke-width="1.6"/><circle cx="17.5" cy="17.5" r="4.2" fill="#0e1a2e" stroke="#4a97f2" stroke-width="1.4"/><text x="17.5" y="19.4" text-anchor="middle" font-size="5" fill="#7db4f5" font-family="Inter, sans-serif" font-weight="600">kr</text></svg>
+      <h3>Rimeligere</h3>
+      <p>Vi gir deg kvalitets&shy;sikring til en lavere kostnad enn dyre takstrapporter.</p>
+    </div>
+    <div class="usp">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2V18h6v-1.3c0-.8.4-1.5 1-2A7 7 0 0 0 12 2z" stroke="#4a97f2" stroke-width="1.6" stroke-linejoin="round"/><path d="M9.5 21h5" stroke="#4a97f2" stroke-width="1.6" stroke-linecap="round"/><path d="M12 6.5v3M10.5 8h3" stroke="#7db4f5" stroke-width="1.3" stroke-linecap="round"/></svg>
+      <h3>Flere alternativer</h3>
+      <p>Vi ser på om det finnes andre alternativer enn å rive, og vurderer realistiske løsninger.</p>
+    </div>
+    <div class="usp">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v11H10l-5 4v-4H4V5z" stroke="#4a97f2" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 10.5l2 2 4-4.5" stroke="#4a97f2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h3>Forståelse</h3>
+      <p>Vi forstår hvordan håndverkeren tenker – og hva du som kunde kan forvente.</p>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-grid">
+      <div>
+        <h2>Erfaring som gir deg trygghet</h2>
+        <div class="stat">
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 11l8-7 8 7M6 10v10h12V10" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div>
+            <div class="stat-num">200+</div>
+            <p>Oppførte og prosjekterte våtrom</p>
+          </div>
+        </div>
+        <div class="stat">
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="#fff" stroke-width="1.6"/><path d="M8 9h4M8 12h8M8 15h8" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <div>
+            <div class="stat-num" style="font-size: 6mm;">Flere års erfaring</div>
+            <p>Med oppbygging og prosjektering av bad</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2>Kompetanse du kan stole på</h2>
+        <ul class="check-list">
+          <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#2f7fe0"/><path d="M7.5 12.5l3 3 6-6.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Fullført alle relevante våtromskurs</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#2f7fe0"/><path d="M7.5 12.5l3 3 6-6.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Uavhengig våtromkontrollør</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#2f7fe0"/><path d="M7.5 12.5l3 3 6-6.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Oppdatert på gjeldende regelverk og bransjestandard</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#2f7fe0"/><path d="M7.5 12.5l3 3 6-6.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Dokumentasjon du kan bruke med trygghet</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="goal">
+      <div class="goal-text">
+        <h2 class="head" style="font-size: 6mm; font-weight: 700; letter-spacing: 0.05em;">Vårt mål</h2>
+        <p class="body">Vårt mål er å gi deg en rettferdig, forståelig og løsningsorientert vurdering av badet ditt – slik at du kan ta gode og veloverveide beslutninger.</p>
+        <p class="motto">Kunnskap. Erfaring. Ærlighet.</p>
+        <p class="sub">Det er det vi bygger på – og det du kan bygge videre på.</p>
+      </div>
+      <div class="badge">
+        <svg viewBox="0 0 120 120" fill="none">
+          <circle cx="60" cy="60" r="57" stroke="#e9eef7" stroke-width="2.5"/>
+          <circle cx="60" cy="60" r="44" stroke="#e9eef7" stroke-width="1"/>
+          <defs>
+            <path id="arcTop" d="M9 60 a51 51 0 0 1 102 0" />
+            <path id="arcBot" d="M9 60 a51 51 0 0 0 102 0" />
+          </defs>
+          <text font-family="Barlow Condensed, sans-serif" font-size="13.5" font-weight="700" letter-spacing="2.5" fill="#e9eef7">
+            <textPath href="#arcTop" startOffset="50%" text-anchor="middle">UAVHENGIG</textPath>
+          </text>
+          <text font-family="Barlow Condensed, sans-serif" font-size="13.5" font-weight="700" letter-spacing="1.5" fill="#e9eef7">
+            <textPath href="#arcBot" startOffset="50%" text-anchor="middle">VÅTROMKONTROLLØR</textPath>
+          </text>
+          <path d="M40 60l13 13 27-30" stroke="#4a97f2" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="light-band">
+  <div class="lb-item">
+    <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#14233c" stroke-width="1.7"/><path d="M4 21c1-4 4.5-6 8-6s7 2 8 6" stroke="#14233c" stroke-width="1.7" stroke-linecap="round"/></svg>
+    <span>Spesialister<br>på våtrom</span>
+  </div>
+  <div class="lb-item">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18M5 7l7-4 7 4M4 7h4l-2 6a3 3 0 0 1-4 0l2-6zm12 0h4l2 6a3 3 0 0 1-4 0l-2-6z" stroke="#14233c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>Uavhengige<br>og objektive</span>
+  </div>
+  <div class="lb-item">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8 3v6c0 5-3.5 9.2-8 11-4.5-1.8-8-6-8-11V5l8-3z" stroke="#14233c" stroke-width="1.6" stroke-linejoin="round"/><path d="M8.5 12l2.5 2.5 4.5-5" stroke="#14233c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>Kvalitet i<br>alle ledd</span>
+  </div>
+  <div class="lb-item">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.3l6.1-.7L12 3z" stroke="#14233c" stroke-width="1.6" stroke-linejoin="round"/></svg>
+    <span>Anbefalt<br>av kunder</span>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="f-item">
+    <span class="f-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
+    930 84 494
+  </div>
+  <div class="f-item">
+    <span class="f-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#fff" stroke-width="1.8"/><path d="M3 7l9 6 9-6" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    vatromskonsulenten@outlook.com
+  </div>
+  <div class="f-item">
+    <span class="f-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#fff" stroke-width="1.8"/><path d="M3 12h18M12 3c2.5 2.6 4 5.6 4 9s-1.5 6.4-4 9c-2.5-2.6-4-5.6-4-9s1.5-6.4 4-9z" stroke="#fff" stroke-width="1.8"/></svg></span>
+    www.vatromskonsulenten.no
+  </div>
+</div>
+
+</body>
+</html>
