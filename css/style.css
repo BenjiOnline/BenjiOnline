@@ -16,6 +16,8 @@
   --blue-soft: #7db4f5;
   --green: #93a75c;
   --green-bright: #a9bd6f;
+  --gold: #c9a24e;
+  --gold-bright: #e0be6f;
   --laser: #35e06a;
   --text: #e9eef7;
   --muted: #a3b2c9;
@@ -67,6 +69,7 @@ h3 { font-size: clamp(1.35rem, 2.5vw, 1.7rem); }
 
 .accent-blue { color: var(--blue-bright); }
 .accent-green { color: var(--green-bright); }
+.accent-gold { color: var(--gold-bright); }
 
 .lead {
   font-size: 1.125rem;
@@ -85,6 +88,7 @@ h3 { font-size: clamp(1.35rem, 2.5vw, 1.7rem); }
 }
 
 .eyebrow.green { color: var(--green-bright); }
+.eyebrow.gold { color: var(--gold-bright); }
 
 /* ---------- Header / navigasjon ---------- */
 
@@ -354,6 +358,23 @@ h3 { font-size: clamp(1.35rem, 2.5vw, 1.7rem); }
 
 @media (max-width: 900px) { .grid-3 { grid-template-columns: 1fr; } }
 
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.4rem;
+}
+
+@media (max-width: 860px) { .grid-2 { grid-template-columns: 1fr; } }
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.4rem;
+}
+
+@media (max-width: 1000px) { .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .grid-4 { grid-template-columns: 1fr; } }
+
 .card {
   background: var(--card);
   border: 1px solid var(--line);
@@ -365,6 +386,8 @@ h3 { font-size: clamp(1.35rem, 2.5vw, 1.7rem); }
 .card:hover { border-color: rgba(74, 151, 242, 0.45); transform: translateY(-3px); }
 
 .card.green-hover:hover { border-color: rgba(169, 189, 111, 0.5); }
+.card.gold-hover:hover { border-color: rgba(224, 190, 111, 0.5); }
+.card.gold-border { border-color: rgba(224, 190, 111, 0.35); }
 
 .icon-badge {
   width: 52px;
@@ -379,6 +402,7 @@ h3 { font-size: clamp(1.35rem, 2.5vw, 1.7rem); }
 .icon-badge svg { width: 26px; height: 26px; }
 
 .icon-badge.green { background: var(--green); }
+.icon-badge.gold { background: var(--gold); }
 
 .card h3 { margin-bottom: 0.6rem; }
 
@@ -401,6 +425,7 @@ h3 { font-size: clamp(1.35rem, 2.5vw, 1.7rem); }
 }
 
 .price.green { color: var(--green-bright); }
+.price.gold { color: var(--gold-bright); }
 
 .price-note { color: var(--muted); font-size: 0.85rem; }
 
@@ -461,6 +486,56 @@ h3 { font-size: clamp(1.35rem, 2.5vw, 1.7rem); }
 .price-card svg { width: 46px; height: 46px; flex-shrink: 0; }
 
 .price-card .price { font-size: 2.3rem; line-height: 1; }
+
+/* ---------- Nummerert stegliste (Trygt Bad Komplett) ---------- */
+
+.num-list {
+  list-style: none;
+  display: grid;
+  gap: 1rem;
+  counter-reset: nl;
+}
+
+.num-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.num-list li::before {
+  counter-increment: nl;
+  content: counter(nl, decimal-leading-zero);
+  font-family: var(--font-head);
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--gold-bright);
+  flex-shrink: 0;
+}
+
+.num-list li strong { display: block; }
+.num-list li span { color: var(--muted); }
+
+/* ---------- Nøkkeltall ---------- */
+
+.stat-num {
+  font-family: var(--font-head);
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--blue-bright);
+  line-height: 1.1;
+}
+
+/* ---------- Motto ---------- */
+
+.motto {
+  font-family: var(--font-head);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 1.25rem;
+  color: var(--blue-bright);
+}
 
 /* ---------- Prosess ---------- */
 
