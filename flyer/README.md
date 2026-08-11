@@ -11,6 +11,7 @@ grønn aksent for Second Opinion og gull for Trygt Bad Komplett.
 | `flyer-sluttbefaring.html` | Sluttbefaring og Rapport (6 250,-) | Blå |
 | `flyer-trygtbad.html` | Trygt Bad Kontroll (6 250,-) | Blå |
 | `flyer-secondopinion.html` | Second Opinion (8 500,-) | Grønn |
+| `flyer-selvbygger.html` | Kontroll og dokumentasjon for selvbygger (6 250,-) | Blå |
 | `flyer-komplett.html` | Trygt Bad Komplett (12 500,-) | Gull |
 
 `flyer-base.css` er felles stilark for tjeneste-flyerne.
