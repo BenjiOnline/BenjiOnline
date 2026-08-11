@@ -262,6 +262,11 @@ h3 { font-size: clamp(1.35rem, 2.5vw, 1.7rem); }
 
 @media (max-width: 860px) {
   .hero-grid { grid-template-columns: 1fr; }
+
+  /* På mobil stables innholdet – laserkrysset ville skåret tilfeldig
+     gjennom kortet. Behold kun én vannrett «nivålinje» langs bunnen. */
+  .hero::after { display: none; }
+  .hero::before { top: auto; bottom: 0; }
 }
 
 .hero .lead { margin-top: 1.4rem; }
