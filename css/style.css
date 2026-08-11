@@ -264,6 +264,10 @@ h3 { font-size: clamp(1.35rem, 2.5vw, 1.7rem); }
   align-items: center;
 }
 
+/* Uten dette vokser kolonnen forbi skjermkanten på smale mobiler
+   (f.eks. iPhone mini) i stedet for at lange ord i tittelen brytes */
+.hero-grid > * { min-width: 0; }
+
 @media (max-width: 860px) {
   .hero-grid { grid-template-columns: 1fr; }
 
