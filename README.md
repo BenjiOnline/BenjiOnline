@@ -21,6 +21,25 @@ python3 -m http.server 8000
 # åpne http://localhost:8000
 ```
 
+## Se siden fra mobilen (uten PC)
+
+Siden publiseres til GitHub Pages av `.github/workflows/pages.yml`. Da får du
+en vanlig nettadresse du kan åpne på telefonen mens du jobber – PC-en trenger
+ikke å stå på.
+
+Slik slår du det på (én gang):
+
+1. Gå til repoet på github.com → **Settings** → **Pages**.
+2. Under **Build and deployment** → **Source**, velg **GitHub Actions**.
+3. Adressen blir `https://<brukernavn>.github.io/BenjiOnline/`.
+
+Etter det publiseres siden på nytt automatisk ved hver push til
+standardbranchen. Vil du forhåndsvise en annen branch, kjør workflowen manuelt:
+**Actions** → *Publiser forhåndsvisning til GitHub Pages* → **Run workflow** →
+velg branchen.
+
+Merk at GitHub Pages er offentlig tilgjengelig for alle som har adressen.
+
 ## Før lansering
 
 1. **Om oss-teksten**: Bytt ut alt i `[KLAMMER]` i `om-oss.html` med reell info
